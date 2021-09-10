@@ -1,0 +1,42 @@
+.page{
+    width: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .calculator-container{
+        margin-top: 150px;
+        border: 1px solid black;
+        width: 150px;
+        .row{
+            height: 30px;
+            width: 100%;
+            &.last{
+                .col{
+                    width: 38px;
+                }
+            }
+            .col{
+                width: 30px;
+                border: 1px solid black;
+                display: inline-block;
+                margin-right: 2px;
+                div{
+                    cursor: pointer;
+                }
+                &.screen{
+                    width: 90%;
+                    margin-top: 4px;
+                    div{
+                        cursor: default;
+                    }
+                    .screen-viewer{
+                        margin-right: 15px;
+                        float: right;
+                    }
+                    
+                }
+            }
+        }
+    }
+}
