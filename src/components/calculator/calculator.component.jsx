@@ -77,6 +77,8 @@ class Calculator extends React.Component {
         
         function operationResult(context){
             const operation = context.state.operation;
+            var firstNumberDecimalsNumber = 0;
+            var secondNumberDecimalsNumber = 0;
             var result = 0;
             const firstNumber = parseFloat(context.state.firstValue);
             const secondNumber = parseFloat(context.state.total);
@@ -91,12 +93,22 @@ class Calculator extends React.Component {
                     result = firstNumber-secondNumber;
                     break;
                 default:
-                    result = firstNumber+secondNumber;;
+                    result = firstNumber+secondNumber;
                 
             }
-            context.setState({total: result === Infinity ? 'Error' : result});
-        }
 
+            //if values have decimals find number with more decimals numbers
+            firstNumberDecimalsNumber = firstNumber.toString().split('.').length > 1 ? firstNumber.toString().split('.')[1].length : 0             
+            secondNumberDecimalsNumber = secondNumber.toString().split('.').length > 1 ? secondNumber.toString().split('.')[1].length : 0
+            
+            if(firstNumberDecimalsNumber>secondNumberDecimalsNumber){
+                context.setState({total: result === Infinity ? 'Error' : result.toFixed(firstNumberDecimalsNumber)});
+            }else if(firstNumberDecimalsNumber<secondNumberDecimalsNumber){
+                context.setState({total: result === Infinity ? 'Error' : result.toFixed(secondNumberDecimalsNumber)});
+            }else{
+                context.setState({total: result === Infinity ? 'Error' : result.toFixed(firstNumberDecimalsNumber)});
+            }
+        }
     }
    
     render() {
